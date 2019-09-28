@@ -64,13 +64,14 @@ class Users{
     };
   }
 
-  async test(){
+  async getQRCode(){
     return {
       isSuccess : true,
       qrcode : ( await this.modules.db.query(
         "select qrcode " +
         "from users " +
-        "where email = 'example@example.com'"
+        "where token = $1",
+        [ req.cookies.token ]
       ) ).rows[0].qrcode
     };
   }

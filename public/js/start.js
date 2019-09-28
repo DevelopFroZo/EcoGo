@@ -38,6 +38,10 @@ function showReceptionPoint( receptionPoint ){
     let organisationNumber = $(".organisation-number");
     let organisationMail = $(".organisation-mail");
     let trashType = $(".trash-type");
+    let organisationTypeBlock = $(".organisation-type-block");
+    let trash = receptionPoint.types.typesOfTrashes;
+
+    organisationTypeBlock.empty();
 
     let openTime = [Math.floor(receptionPoint.opentime / 60), (receptionPoint.opentime / 60 - Math.floor(receptionPoint.opentime / 60)) * 60];
     let closeTime = [Math.floor(receptionPoint.closetime / 60), (receptionPoint.closetime / 60 - Math.floor(receptionPoint.closetime / 60)) * 60];
@@ -47,7 +51,34 @@ function showReceptionPoint( receptionPoint ){
     organisationInfoBlock.show();
     trashType.hide();
 
-    console.log(receptionPoint)
+    for(let i = 0; i < trash.length; i++){
+        let block = $("<div/>").addClass("organisation-type");
+        let blockType = $("<img/>");
+        switch(trash.description){
+            case "пластик" : 
+                blockType.attr("src", "./img/water-bottles.png");
+                block.addClass("bottle");
+            break;
+            case "батарейки" :
+                blockType.attr("src", "./img/buttery.png")    
+                block.addClass("battary");
+            break;
+            case "лампочки" :
+                blockType.attr("src", "./img/lamp.png");
+                block.addClass("lamp");
+            break;
+            case "тетрапак" :
+                blockType.attr("src", "./img/tetrapack.png");
+                block.addClass("tetrapack");
+            break;
+            case "железо" :
+                blockType.attr("src", "./img/al_bin.png");
+                block.addClass("bin");   
+            break;
+        }
+        block.append(blockType);
+        organisationTypeBlock.append(block);
+    }
 
     organisationName.text(receptionPoint.name);
     organisationPlace.text(receptionPoint.address);

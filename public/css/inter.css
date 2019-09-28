@@ -1,0 +1,124 @@
+.form {
+    height: 90vh;
+    box-sizing: border-box;
+    background: url("../img/paper-fon.png");
+    background-size: cover;
+    position: relative;
+}
+
+.inter-block {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+
+.login-head {
+    text-align: center;
+    font-size: 33px;
+    font-family: "Amatic-Bold";
+}
+
+.login-head>img {
+    height: 45px;
+}
+
+label {
+    font-size: 14px;
+    font-family: "Yu Gothic UI";
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.input-block {
+    display: flex;
+    padding: 5px 0;
+    background: #F0F0F0;
+    border-radius: 100px;
+    width: 100%;
+    align-items: center;
+}
+
+input {
+    width: 100%;
+    outline: none;
+    background: transparent;
+    border: none;
+    font-family: "Amatic-Regular";
+    font-size: 24px;
+}
+
+input::placeholder {
+    font-family: "Amatic-Regular";
+    font-size: 24px;
+}
+
+.input-block>img {
+    margin: 0px 15px;
+    width: 23px;
+}
+
+.mail-img {
+    width: 27px;
+    height: 22px;
+}
+
+.full-input-block{
+    margin-top: 10px;
+}
+
+.info-block {
+    display: flex;
+    align-items: center;
+}
+
+#check {
+    width: 25px !important;
+    border: none;
+}
+
+.personal-input {
+    font-family: "Yu Gothic UI";
+    font-size: 14px;
+}
+
+a {
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+p {
+    margin-left: 10px;
+}
+
+#inter {
+    width: 100%;
+    background: #BBE639;
+    font-size: 33px;
+    font-family: "Amatic-Bold";
+    border-radius: 100px;
+    border: none;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.registration{
+    text-align: center;
+    margin-top: 5px;
+    color: #989898;
+    font-size: 14px;
+    font-family: "Yu Gothic UI";
+}
+
+@font-face {
+    font-family: "Amatic-Bold";
+    src: url("../fonts/AmaticSC-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Amatic-Regular";
+    src: url("../fonts/AmaticSC-Regular.ttf");
+}

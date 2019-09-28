@@ -28,19 +28,3 @@ function initCompanyMode(){
         }
     })
 }
-
-function initBurger(){
-    let burgerButton = $(".burger-button");
-    let burgerBlock = $(".burger");
-
-    burgerButton.on("click", function(){
-        burgerBlock.show();
-    })
-
-    $(document).on("mouseup", function(e){
-        if (!burgerBlock.is(e.target)
-		    && burgerBlock.has(e.target).length === 0) { 
-			burgerBlock.hide();
-		}
-    })
-}

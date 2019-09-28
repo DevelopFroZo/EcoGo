@@ -3,6 +3,10 @@ let requests = new Requests( {
     responsePreprocess : data => JSON.parse( data )
 } );
 
+let marker
+let coords = [ 55.790244, 49.119316 ]
+let markers = []
+
 async function getPoints(){
     return res = await requests.post(
         '/receptionPoints/get'
@@ -49,15 +53,85 @@ function deg2rad(deg) {
     return deg * (Math.PI/180)
 }
 
-function getTop( receptionPoints, types ){
-    let data;
+function getTop( receptionPoints, types, coords ){
+    let data
+    let dataIndex
+    let min = []
+    let tmp
 
     for( let i = 0; i < types.length; i++ ){
-        console.log( receptionPoint )
-        return
+        data = -1
+        dataIndex = -1
+        for( let j = 0; j < receptionPoints.length; j++ ){
+            tmp = receptionPoints[j].types.typesOfTrashes
+            for(let k = 0; k < tmp.length; k++ ){
+                if(
+                    tmp[k].typeoftrashid == types[i] &&
+                    (
+                        data == -1 ||
+                        data > getDistance( coords[0], coords[1], receptionPoints[j].lat, receptionPoints[j].long )
+                    ) 
+                ) {
+                    data = getDistance( coords[0], coords[1], receptionPoints[j].lat, receptionPoints[j].long );
+                    dataIndex = j
+                }
+            }
+        }
+        min.push( {
+            type : types[i],
+            index : dataIndex,
+            distance : data
+        } )
     }
 
-    console.log( receptionPoints )
+    return min
+}
+
+async function createMarkers( receptionPoint, receptionPointIcon, map, type ){
+    console.log(markers)
+    for( let i = 0; i < markers.length; i++ ){
+        console.log( markers[i] )
+        markers[i].removeFrom( map )
+    }
+
+    markers = []
+
+    let types = []
+    for( let i = 0; i < receptionPoint.length; i++ ){
+        let el = receptionPoint[i]
+
+        let res =  await requests.post( 
+            '/typesOfTrashes/get',
+            {
+                receptionPointId : receptionPoint[i].id
+            }
+        )
+
+        for( let j = 0; j < res.typesOfTrashes.length; j++ ){
+            if( types.indexOf( res.typesOfTrashes[j].typeoftrashid ) == -1 ){
+                types.push( res.typesOfTrashes[j].typeoftrashid )
+            } 
+        }
+
+        receptionPoint[i].types = res
+
+        if( type >= 0 ){
+            let e = el.types.typesOfTrashes
+            for( let i = 0; i < e.length; i++ ){
+                if( e[i].typeoftrashid == type ){
+                    marker = DG.marker( [ el.lat, el.long ], { icon : receptionPointIcon } );
+                    marker.addTo( map ).bindLabel( el.name );
+                    marker.addEventListener( "click", () => showReceptionPoint( receptionPoint[i], res ) )
+                    markers.push( marker )
+                }
+            }
+        } else {
+            marker = DG.marker( [ el.lat, el.long ], { icon : receptionPointIcon } );
+            marker.addTo( map ).bindLabel( el.name );
+            marker.addEventListener( "click", () => showReceptionPoint( receptionPoint[i], res ) )
+            markers.push( marker )
+        }
+    }
 }
 
 function map() {
@@ -72,15 +146,21 @@ function map() {
 
         // создание карты
         map = DG.map( "map", {
-            center : [ 55.790244, 49.119316 ],
+            center : [ coords[0], coords[1] ],
             zoom : 16,
             fullscreenControl : false,
             zoomControl : false
         } );
 
-        marker = DG.marker( [ 55.790244, 49.119316 ] );
+        marker = DG.marker( [ coords[0], coords[1] ] );
         marker.addTo( map ).bindLabel( "Вы здесь" );
         map.setZoom( 16 ) 
+        map.addEventListener( 'click', (e) => {
+            marker.removeFrom( map )
+            coords = [e.latlng.lat, e.latlng.lng]
+            marker = DG.marker( [e.latlng.lat, e.latlng.lng] )
+            marker.addTo( map ).bindLabel( "Вы здесь" );
+        } )
 
         // определение геолокации
         // map.locate({setView: true, watch: true})
@@ -99,45 +179,14 @@ function map() {
         // post на получение меток
         receptionPoint = await getPoints() 
         receptionPoint = receptionPoint.receptionPoints
-         
-        // console.log( await requests.post( 
-        //     '/rates/get',
-        //     {
-        //         typeOfTrashId : 1
-        //     }
-        //  ) )
-
-        let types = []
 
         // вывод меток
-        for( let i = 0; i < receptionPoint.length; i++ ){
-            let el = receptionPoint[i]
-
-            let res =  await requests.post( 
-                '/typesOfTrashes/get',
-                {
-                    receptionPointId : receptionPoint[i].id
-                }
-            )
-
-            for( let j = 0; j < res.typesOfTrashes.length; j++ ){
-                if( types.indexOf( res.typesOfTrashes[j].typeoftrashid ) == -1 ){
-                    types.push( res.typesOfTrashes[j].typeoftrashid )
-                } 
-            }
-
-            receptionPoint[i].types = res
-
-            marker = DG.marker( [ el.lat, el.long ], { icon : receptionPointIcon } );
-            marker.addTo( map ).bindLabel( el.name );
-            marker.addEventListener( "click", () => showReceptionPoint( receptionPoint[i], res ) )
-        }
-
-        getTop( receptionPoint, types )
-
-        //getCoordsViaAdress( 'Казань Зинина 5' )
-        //getAddressViaCoords( 37.611347, 55.760241 )
-        //console.log( getDistance( 55.781376, 49.113619, 55.788423, 49.12814 ) )
+        await createMarkers( receptionPoint, receptionPointIcon, map, -1 )
+        await createMarkers( receptionPoint, receptionPointIcon, map, 1 )
+        
+        await createMarkers( receptionPoint, receptionPointIcon, map, 2 )
+        
+        //console.log( getTop( receptionPoint, types, [ coords[0], coords[1] ] ) )
     } ) 
         
     

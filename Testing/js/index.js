@@ -85,6 +85,15 @@ async function index(){
   //   }
   // );
   // console.log( data );
+  // data = await requests.post(
+  //   "/receptionPoints/get"
+  // );
+  // console.log( data );
+  // data = await requests.post(
+  //   "/typesOfTrashes/get",
+  //   { receptionPointId : 1 }
+  // );
+  // console.log( data );
 }
 
 window.addEventListener( "load", index );

@@ -28,6 +28,22 @@ class TypesOfTrashes{
 
     return { isSuccess : true };
   }
+
+  async get( receptionPointId ){
+    let typesOfTrashes;
+
+    typesOfTrashes = ( await this.modules.db.query(
+      "select tot.description " +
+      "from tottorp, typesoftrashes as tot " +
+      "where tottorp.typeoftrashid = tot.id and receptionpointid = $1",
+      [ receptionPointId ]
+    ) ).rows;
+
+    return {
+      isSuccess : true,
+      typesOfTrashes
+    };
+  }
 }
 
 module.exports = TypesOfTrashes;

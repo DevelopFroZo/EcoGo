@@ -90,9 +90,7 @@ function getTop( receptionPoints, types, coords ){
 }
 
 async function createMarkers( receptionPoint, receptionPointIcon, map, type ){
-    console.log(markers)
     for( let i = 0; i < markers.length; i++ ){
-        console.log( markers[i] )
         markers[i].removeFrom( map )
     }
 
@@ -117,13 +115,8 @@ async function createMarkers( receptionPoint, receptionPointIcon, map, type ){
 
         receptionPoint[i].types = res
 
-<<<<<<< HEAD
         if( type !== "" ){
-=======
-        if( type !== '' ){
->>>>>>> 6f4bec8912489f1ad87b41551c819271278cbf9f
             let e = el.types.typesOfTrashes
-            console.log( e )
             for( let i = 0; i < e.length; i++ ){
                 if( e[i].description == type ){
                     marker = DG.marker( [ el.lat, el.long ], { icon : receptionPointIcon } );
@@ -186,15 +179,10 @@ function map() {
         receptionPoint = receptionPoint.receptionPoints
 
         // вывод меток
-<<<<<<< HEAD
-        // await createMarkers( receptionPoint, receptionPointIcon, map, -1 )
+        await createMarkers( receptionPoint, receptionPointIcon, map, "" )
         // await createMarkers( receptionPoint, receptionPointIcon, map, 1 )
         
         // await createMarkers( receptionPoint, receptionPointIcon, map, 2 )
-=======
-        await createMarkers( receptionPoint, receptionPointIcon, map, '' )
-        //await createMarkers( receptionPoint, receptionPointIcon, map, 'Лампочки' )
->>>>>>> 6f4bec8912489f1ad87b41551c819271278cbf9f
         
         //console.log( getTop( receptionPoint, types, [ coords[0], coords[1] ] ) )
     } ) 

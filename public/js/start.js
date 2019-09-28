@@ -8,28 +8,29 @@ $(document).ready(function () {
 
 function initMode() {
     let bottleButton = $("#bottle-button");
+    
 
     let secondMode = -1;
 
     bottleButton.on("click", async function () {
-        receptionPoint = await getPoints()
-        receptionPoint = receptionPoint.receptionPoints
-        if (secondMode !== 0) {
-
-            await createMarkers(receptionPoint, receptionPointIcon, map, 'Пластик');
-
-            secondMode = 0;
-        }
-        else {
-
-            await createMarkers(receptionPoint, receptionPointIcon, map, '');
-
-            secondMode = -1;
-
-        }
-
-
+        secondMode = await checkFilter("Пластик", secondMode, 0);
     })
+
+}
+
+async function checkFilter(name, secondMode, number) {
+    receptionPoint = await getPoints()
+    receptionPoint = receptionPoint.receptionPoints
+    if (secondMode !== number) {
+        await createMarkers(receptionPoint, receptionPointIcon, map, name);
+        secondMode = number;
+    }
+    else {
+        await createMarkers(receptionPoint, receptionPointIcon, map, '');
+        secondMode = -1;
+    }
+    console.log(secondMode)
+    return secondMode;
 }
 
 function initCompanyMode() {

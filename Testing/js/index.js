@@ -356,7 +356,7 @@ async function index(){
   cookie.set( "token", data.token );
   console.log( data );
   data = await requests.post(
-    "/users/getQRCode"
+    "/users/getUserInfo"
   );
   console.log( data );
   //addReceptionPoints();

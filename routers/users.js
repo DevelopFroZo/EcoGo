@@ -15,8 +15,8 @@ async function authHandler( req, res ){
   ) );
 }
 
-async function getQRCodeHandler( req, res ){
-  res.send( await req.db.users.getQRCode(
+async function getUserInfoHandler( req, res ){
+  res.send( await req.db.users.getUserInfo(
     req.cookies.token
   ) );
 }
@@ -28,7 +28,7 @@ function index(){
 
   router.post( "/register", registerHandler );
   router.post( "/auth", authHandler );
-  router.post( "/getQRCode", getQRCodeHandler );
+  router.post( "/getUserInfo", getUserInfoHandler );
 
   return router;
 }

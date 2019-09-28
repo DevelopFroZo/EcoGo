@@ -64,15 +64,23 @@ class Users{
     };
   }
 
-  async getQRCode( token ){
+  async getUserInfo( token ){
+    let data;
+
+    data = ( await this.modules.db.query(
+      "select fi, email, phone, balance, qrcode " +
+      "from users " +
+      "where token = $1",
+      [ token ]
+    ) ).rows[0];
+
     return {
       isSuccess : true,
-      qrcode : ( await this.modules.db.query(
-        "select qrcode " +
-        "from users " +
-        "where token = $1",
-        [ token ]
-      ) ).rows[0].qrcode
+      fi : data.fi,
+      email : data.email,
+      phone : data.phone,
+      balance : data.balance,
+      qrcode : data.qrcode
     };
   }
 }

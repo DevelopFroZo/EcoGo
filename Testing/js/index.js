@@ -334,12 +334,11 @@ async function index(){
   //   }
   // );
   // cookie.set( "token", data.token );
-  cookie.delete( "token" );
-  console.log( data );
-  data = await requests.post(
-    "/users/getUserInfo"
-  );
-  console.log( data );
+  // console.log( data );
+  // data = await requests.post(
+  //   "/users/getUserInfo"
+  // );
+  // console.log( data );
   //addReceptionPoints();
 }
 

@@ -7,13 +7,267 @@ body{
     margin: 0;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
+}
+
+.header-block{
+    width: 100%;
+    height: 5vh;
+    position: relative;
 }
 
 header{
-    width: 100%;
-    height: 50px;
-    background: gray;
+    background: var(--gray);
+    position: relative;
 }
 
+.burger-button{
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(calc(-50% + 3px));
+}
 
+.burger-button > img{
+    width: 25px;
+}
 
+.logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+}
+
+.logo-img{
+    height: 22px;
+}
+
+.map-block{
+    height: 70vh;
+    padding: 10px;
+}
+
+#map{
+    width: 100%;
+    height: calc(70vh);
+    background: #999999;
+}
+
+.trash-type{
+    height: 15vh;
+    width: 100%;
+}
+
+.trash-buttons{
+    display: flex;
+    justify-content: space-around;
+    padding: 0 10px;
+}
+
+.trash-type-button{
+    border: none;
+    background-color: var(--gray);
+    width: 50px;
+    height: 50px; 
+    border-radius: 100%;
+}
+
+footer{
+    height: 5vh;
+    margin: 0 40px;
+}
+
+.footer-line{
+    border: solid var(--gray);
+    border-width: 1px 0 0 0;
+    padding: 10px;
+    text-align: center;
+    color: #CFCFCF;
+}
+
+.burger{
+    position: absolute;
+    top: 5vh;
+    z-index: 10;
+    background: var(--gray);
+    width: 100%;
+    display: none;
+}
+
+.organisation-info-block{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-radius: 100px 0 100px 0;
+    background: #BBE639;
+    padding: 0px 40px 40px 40px;
+    box-sizing: border-box;
+}
+
+.organisation-swipe{
+    margin: auto;
+    width: 35px;
+    height: 3px;
+    background: white;
+    display: block;
+    border: none;
+}
+
+.organisation-swipe-block{
+    display: flex;
+    flex-direction: row;
+    height: 30px;
+}
+
+.organisation-name{
+    font-family: "Amatic-Regular";
+    color: white;
+    font-size: 33px;   
+}
+
+.organisation-name-block{
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.organisation-token{
+    position: absolute;
+    left: 110%;
+    background: #00C5FA;
+    padding: 5px 15px;
+    border-radius: 100px;
+    font-size: 28px;
+    font-family: "Amatic-Regular";
+    color: white;
+    top: 0;
+    white-space: nowrap;
+}
+
+.center-text{
+    text-align: center;
+}
+
+.organisation-time-block{
+    display: flex;
+    color: white;
+    align-items: center;
+}
+
+.organisation-time-text{
+    font-size: 27px;
+    font-weight: bold;
+    font-family: "Amatic-Regular";
+}
+
+.organisation-time{
+    font-size: 20px;
+    font-family: "Amatic-Regular";
+    margin-left: 20px;
+}
+
+.tel{
+    font-family: "Amatic-Regular";
+    color: white;
+    font-size: 27px;
+    text-decoration: none;
+}
+
+.line{
+    display: flex;
+    align-items: center;
+}
+
+.line > img{
+    margin-right: 20px;
+    width: 20px;
+}
+
+.mail{
+    color: white;
+    font-size: 22px;
+    font-family: "Yu Gothic UI";
+}
+
+.organisation-type-block{
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+    display: none;
+}
+
+.organisation-type{
+    width: 50px;
+    height: 50px;
+    background: white;
+    position: relative;
+    border-radius: 100%;
+}
+
+.organisation-type:not(:first-child){
+    margin-left: 20px;
+}
+
+.organisation-type > img{
+    width:  35px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.photo-block{
+    position: relative;
+    width: 100%;
+    height: 155px;
+    background: white;
+    overflow-x: scroll;
+    display: flex;
+    margin: 20px 0;
+    display: none;
+}
+
+.photos{
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+.photos > img{
+    height: 155px;
+}
+
+.add-photo{
+    border: none;
+    background: #000000;
+    height: 155px;
+    width: 66px;
+    position: relative;
+}
+
+.add-photo > img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35px;
+    display: block;
+}
+
+.mail-block{
+    display: none;
+}
+
+@font-face{
+    font-family: "Amatic-Bold";
+    src: url("../fonts/AmaticSC-Bold.ttf");
+}
+
+@font-face{
+    font-family: "Amatic-Regular";
+    src: url("../fonts/AmaticSC-Regular.ttf");
+}

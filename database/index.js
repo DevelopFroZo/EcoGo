@@ -12,6 +12,7 @@ function index(){
   modules.typesOfTrashes = new ( require( "./typesOfTrashes" ) )( modules );
   modules.rates = new ( require( "./rates" ) )( modules );
   modules.users = new ( require( "./users" ) )( modules );
+  modules.companies = new ( require( "./companies" ) )( modules );  
 
   return modules;
 }

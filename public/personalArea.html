@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ecoGo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/personalArea.css">
+    <link rel="stylesheet" href="./css/footerAndHeader.css">
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-block">
+            <button class="burger-button">
+                <img src="img/btn-menu.png" src="burger">
+            </button>
+            <img class="logo" alt="logo" src="./img/logo-name.png">
+
+        </div>
+        <div class="burger">
+            <a href="">Главная</a>
+            <a href="">Личный кабинет</a>
+            <a href="">Карта</a>
+            <a href="">Как сдавать?</a>
+            <a href="">Бонусы</a>
+        </div>
+    </header>
+
+    <div class = "area">
+        <div class = "user-block">
+            <img src = "./img/avatar.jpg" alt = "avatar" class = "avatar">
+            <div class = "user-info">
+                <div id = "user-name">Иван Иванович</div>
+                <div id = "user-mail">example@example.com</div>
+                <a href = "tel:user-number" id = "user-number">+7 999 123 45 67</a>
+            </div>
+        </div>
+        <div class = "user-tokens">
+            Ваши баллы:
+            <div class = "tokens">20 баллов</div>
+        </div>
+        <div id = "qrCode">
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-line">
+            ©2019 Phobos
+        </div>
+    </footer>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/initBurger.js"></script>
+    <script src="./js/inter.js"></script>
+</body>
+
+</html>

@@ -1,177 +1,98 @@
 let requests, cookie;
 
-/* async function addReceptionPoints(){
+async function addReceptionPoints(){
   let receptionPoints;
 
-  // {
-  //   typeOfTrashId : ,
-  //   description : "",
-  //   cost :
-  // }
-
-  receptionPoints = {
-    "Штаб" : {
-      opentime : 0,
-      closetime : 1440,
+  receptionPoints = [
+    {
+      name : "Штаб",
+      openTime : 0,
+      closeTime : 1440,
       address : "г. Казань, ул. Татарстан, 20",
       lat : 55.781385,
       long : 49.113656,
-      companyid : 1,
-      rates : [
-        {
-          typeOfTrashId : 1,
-          description : "Меньше 1кг",
-          cost : 5
-        },
-        {
-          typeOfTrashId : 1,
-          description : "Больше 1кг, но меньше 5кг",
-          cost : 10
-        },
-        {
-          typeOfTrashId : 1,
-          description : "Свыше 5кг",
-          cost : 15
-        },
-        {
-          typeOfTrashId : 2,
-          description : "Меньше 1кг",
-          cost : 5
-        },
-        {
-          typeOfTrashId : 2,
-          description : "Больше 1кг, но меньше 5кг",
-          cost : 10
-        },
-        {
-          typeOfTrashId : 2,
-          description : "Свыше 5кг",
-          cost : 15
-        }
-      ]
+      companyId : 1
     },
-    "" : {
-      opentime : ,
-      closetime : ,
-      address : "",
-      lat : ,
-      long : ,
-      companyid : ,
-      typesOfTrashes : {
-        "" : {
-          "" : ,
-          "" : ,
-          "" :
-        }
-      }
+    {
+      name : "МОЛОДО-ЗЕЛЕНО И М.ВИДЕО",
+      openTime : 600,
+      closeTime : 1320,
+      address : "г. Казань, ул. Петербургская, 1",
+      lat : 55.786707,
+      long : 49.124739,
+      companyId : 1
     },
-    "" : {
-      opentime : ,
-      closetime : ,
-      address : "",
-      lat : ,
-      long : ,
-      companyid : ,
-      typesOfTrashes : {
-        "" : {
-          "" : ,
-          "" : ,
-          "" :
-        }
-      }
+    {
+      name : "GREEN LIFE",
+      openTime : 540,
+      closeTime : 1260,
+      address : "г. Казань, ул. Московская, д. 2",
+      lat : 55.788601,
+      long : 49.121247,
+      companyId : 1
     },
-    "" : {
-      opentime : ,
-      closetime : ,
-      address : "",
-      lat : ,
-      long : ,
-      companyid : ,
-      typesOfTrashes : {
-        "" : {
-          "" : ,
-          "" : ,
-          "" :
-        }
-      }
+    {
+      name : "ПУНКТ ПРИЁМА БАТАРЕЕК",
+      openTime : 540,
+      closeTime : 1260,
+      address : "г. Казань, ул. Московская, д. 2",
+      lat : 55.792392,
+      long : 49.102171,
+      companyId : 1
     },
-    "" : {
-      opentime : ,
-      closetime : ,
-      address : "",
-      lat : ,
-      long : ,
-      companyid : ,
-      typesOfTrashes : {
-        "" : {
-          "" : ,
-          "" : ,
-          "" :
-        }
-      }
+    {
+      name : "ПУНКТ ПРИЁМА ЭКОТЕК",
+      openTime : 780,
+      closeTime : 960,
+      address : "г. Казань, ул. Салимжанова, 14",
+      lat : 55.774603,
+      long : 49.13491,
+      companyId : 1
     },
-    "" : {
-      opentime : ,
-      closetime : ,
-      address : "",
-      lat : ,
-      long : ,
-      companyid : ,
-      typesOfTrashes : {
-        "" : {
-          "" : ,
-          "" : ,
-          "" :
-        }
-      }
+    {
+      name : "ЭКОЛОГИЯ ПОВОЛЖЬЯ",
+      openTime : 510,
+      closeTime : 1050,
+      address : "г. Казань, ул. Вишневского, д. 26А, офис 110",
+      lat : 55.779968,
+      long : 49.145215,
+      companyId : 1
     },
-    "" : {
-      opentime : ,
-      closetime : ,
-      address : "",
-      lat : ,
-      long : ,
-      companyid : ,
-      typesOfTrashes : {
-        "" : {
-          "" : ,
-          "" : ,
-          "" :
-        }
-      }
+    {
+      name : "СЕТКА ДЛЯ ПЛАСТИКА",
+      openTime : 0,
+      closeTime : 1440,
+      address : "г. Казань, ул. Вишневского, 57",
+      lat : 55.78264,
+      long : 49.149877,
+      companyId : 1
     },
-    "" : {
-      opentime : ,
-      closetime : ,
-      address : "",
-      lat : ,
-      long : ,
-      companyid : ,
-      typesOfTrashes : {
-        "" : {
-          "" : ,
-          "" : ,
-          "" :
-        }
-      }
+    {
+      name : "СЕТКА ДЛЯ ПЛАСТИКА",
+      openTime : 0,
+      closeTime : 1440,
+      address : "г. Казань, ул. Толбухина, 7",
+      lat : 55.781213,
+      long : 49.168561,
+      companyId : 1
     },
-    "" : {
-      opentime : ,
-      closetime : ,
-      address : "",
-      lat : ,
-      long : ,
-      companyid : ,
-      typesOfTrashes : {
-        "" : {
-          "" : ,
-          "" : ,
-          "" :
-        }
-      }
+    {
+      name : "БАЗАЛЬТ",
+      openTime : 480,
+      closeTime : 1020,
+      address : "г. Казань, ул. Даурская, д. 46А",
+      lat : 55.767536,
+      long : 49.189472,
+      companyId : 1
     }
-  };
-} */
+  ];
+
+  for( let i = 0; i < receptionPoints.length; i++ )
+    console.log( await requests.post(
+      "/receptionPoints/add",
+      receptionPoints[i]
+    ) );
+}
 
 async function index(){
   let data;
@@ -292,10 +213,11 @@ async function index(){
   //   }
   // );
   // console.log( data );
-  data = await requests.post(
-    "/users/test"
-  );
-  console.log( data );
+  // data = await requests.post(
+  //   "/users/test"
+  // );
+  // console.log( data );
+  addReceptionPoints();
 }
 
 window.addEventListener( "load", index );

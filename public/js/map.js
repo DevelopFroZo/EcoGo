@@ -1,3 +1,5 @@
+import { FORMERR } from "dns";
+
 let requests = new Requests( {
     dataType : "json",
     responsePreprocess : data => JSON.parse( data )
@@ -50,9 +52,18 @@ function deg2rad(deg) {
 }
 
 function getTop( receptionPoints ){
-    // let top = {
-    //     ''
-    // }
+    let data;
+
+    for( let i = 0; i < receptionPoints.length; i++ ){
+        res = requests.post(
+            '/typesOfTrashes/get',
+                {
+                    receptionPointId : receptionPoint[i].id
+                }
+        )
+        return
+    }
+
     console.log( receptionPoints )
 }
 
@@ -103,23 +114,29 @@ function map() {
         //     }
         //  ) )
 
+        let types = []
+
         // вывод меток
         for( let i = 0; i < receptionPoint.length; i++ ){
             let el = receptionPoint[i]
 
-            let typeOfTrashes =  await requests.post( 
+            let res =  await requests.post( 
                 '/typesOfTrashes/get',
                 {
                     receptionPointId : receptionPoint[i].id
                 }
             )
 
+            for( let j = 0; j < res.typeOfTrashes.length; i++ ){
+                
+            }
+
             marker = DG.marker( [ el.lat, el.long ], { icon : receptionPointIcon } );
             marker.addTo( map ).bindLabel( el.name );
-            marker.addEventListener( "click", () => showReceptionPoint( receptionPoint[i], typeOfTrashes[i] ) )
+            marker.addEventListener( "click", () => showReceptionPoint( receptionPoint[i], res ) )
         }
 
-        getTop( receptionPoint )
+        getTop( receptionPoint, types )
 
         //getCoordsViaAdress( 'Казань Зинина 5' )
         //getAddressViaCoords( 37.611347, 55.760241 )

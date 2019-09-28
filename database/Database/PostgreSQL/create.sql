@@ -11,7 +11,7 @@ CREATE DATABASE ecogo
 -- companies
 CREATE TABLE public.companies
 (
-    id integer NOT NULL DEFAULT nextval('companies_id_seq'::regclass),
+    id serial NOT NULL,
     name character varying(100) COLLATE pg_catalog."default" NOT NULL
 )
 WITH (
@@ -27,7 +27,7 @@ CREATE TABLE public.rates
 (
     description character varying(100) COLLATE pg_catalog."default" NOT NULL,
     cost integer NOT NULL,
-    id integer NOT NULL DEFAULT nextval('rates_id_seq'::regclass),
+    id serial NOT NULL,
     typeoftrashid integer NOT NULL
 )
 WITH (
@@ -63,7 +63,7 @@ CREATE TABLE public.receptionpoints
     lat double precision NOT NULL,
     "long" double precision NOT NULL,
     companyid integer NOT NULL,
-    id integer NOT NULL DEFAULT nextval('receptionpoints_id_seq'::regclass)
+    id serial NOT NULL
 )
 WITH (
     OIDS = FALSE
@@ -90,7 +90,7 @@ ALTER TABLE public.tottorp
 -- trashdrops
 CREATE TABLE public.trashdrops
 (
-    id integer NOT NULL DEFAULT nextval('trashdrops_id_seq'::regclass),
+    id serial NOT NULL,
     tottorpid integer NOT NULL,
     ratestorpid integer NOT NULL,
     date date NOT NULL,
@@ -121,12 +121,14 @@ ALTER TABLE public.typesoftrashes
 -- users
 CREATE TABLE public.users
 (
-    id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
+    id serial NOT NULL,
     fi character varying(100) COLLATE pg_catalog."default" NOT NULL,
     email character varying(100) COLLATE pg_catalog."default" NOT NULL,
     password character varying(100) COLLATE pg_catalog."default" NOT NULL,
     phone character varying(20) COLLATE pg_catalog."default" NOT NULL,
-    token character varying(528) COLLATE pg_catalog."default"
+    token character varying(528) COLLATE pg_catalog."default",
+    balance integer NOT NULL DEFAULT 0,
+    qrcode text COLLATE pg_catalog."default"
 )
 WITH (
     OIDS = FALSE

@@ -15,6 +15,10 @@ async function authHandler( req, res ){
   ) );
 }
 
+async function testHandler( req, res ){
+  res.send( await req.db.users.test() );
+}
+
 function index(){
   let router;
 
@@ -22,6 +26,7 @@ function index(){
 
   router.post( "/register", registerHandler );
   router.post( "/auth", authHandler );
+  router.post( "/test", testHandler );
 
   return router;
 }

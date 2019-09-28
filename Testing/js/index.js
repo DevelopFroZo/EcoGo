@@ -1,6 +1,6 @@
 let requests, cookie;
 
-async function addReceptionPoints(){
+/* async function addReceptionPoints(){
   let receptionPoints;
 
   // {
@@ -20,8 +20,33 @@ async function addReceptionPoints(){
       rates : [
         {
           typeOfTrashId : 1,
-          description : "",
-          cost :
+          description : "Меньше 1кг",
+          cost : 5
+        },
+        {
+          typeOfTrashId : 1,
+          description : "Больше 1кг, но меньше 5кг",
+          cost : 10
+        },
+        {
+          typeOfTrashId : 1,
+          description : "Свыше 5кг",
+          cost : 15
+        },
+        {
+          typeOfTrashId : 2,
+          description : "Меньше 1кг",
+          cost : 5
+        },
+        {
+          typeOfTrashId : 2,
+          description : "Больше 1кг, но меньше 5кг",
+          cost : 10
+        },
+        {
+          typeOfTrashId : 2,
+          description : "Свыше 5кг",
+          cost : 15
         }
       ]
     },
@@ -146,7 +171,7 @@ async function addReceptionPoints(){
       }
     }
   };
-}
+} */
 
 async function index(){
   let data;
@@ -267,6 +292,10 @@ async function index(){
   //   }
   // );
   // console.log( data );
+  data = await requests.post(
+    "/users/test"
+  );
+  console.log( data );
 }
 
 window.addEventListener( "load", index );

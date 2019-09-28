@@ -1,7 +1,8 @@
-let crypto, salt;
+let crypto, salt, qrcode;
 
 crypto = require( "crypto" );
 salt = require( "./support/salt" );
+qrcode = require( "./support/qrcode" );
 
 class Users{
   constructor( modules ){
@@ -28,7 +29,7 @@ class Users{
   }
 
   async auth( emailOrPhone, password ){
-    let data, password_, token;
+    let data, password_, token, qrcodeImage;
 
     data = ( await this.modules.db.query(
       "select id, fi, email, password, token " +
@@ -48,18 +49,29 @@ class Users{
     };
 
     token = crypto.createHash( "sha256" ).update( `${data.email}${data.fi}${( new Date() ).getTime()}` ).digest( "hex" );
+    qrcodeImage = await qrcode.create( token );
 
     await this.modules.db.query(
       "update users " +
-      "set token = $1 " +
-      "where email = $2",
-      [ token, data.email ]
+      "set token = $1, qrcode = $2 " +
+      "where email = $3",
+      [ token, qrcodeImage, data.email ]
     );
-    console.log( "?" );
 
     return {
       isSuccess : true,
       token
+    };
+  }
+
+  async test(){
+    return {
+      isSuccess : true,
+      qrcode : ( await this.modules.db.query(
+        "select qrcode " +
+        "from users " +
+        "where email = 'example@example.com'"
+      ) ).rows[0].qrcode
     };
   }
 }

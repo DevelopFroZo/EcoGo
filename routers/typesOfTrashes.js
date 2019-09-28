@@ -14,6 +14,12 @@ async function connectWithRPHandler( req, res ){
   ) );
 }
 
+async function getHandler( req, res ){
+  res.send( await req.db.typesOfTrashes.get(
+    req.body.receptionPointId
+  ) );
+}
+
 function index(){
   let router;
 
@@ -21,6 +27,7 @@ function index(){
 
   router.post( "/add", addHandler );
   router.post( "/connectWithRP", connectWithRPHandler );
+  router.post( "/get", getHandler );
 
   return router;
 }

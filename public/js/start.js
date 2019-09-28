@@ -2,27 +2,54 @@ $(document).ready(function () {
     initUser();
     initBurger();
     initCompanyMode();
-    map()
+    map();
+    initMode();
 })
 
-function initCompanyMode(){
+function initMode() {
+    let bottleButton = $("#bottle-button");
+
+    let secondMode = -1;
+
+    bottleButton.on("click", async function () {
+        receptionPoint = await getPoints()
+        receptionPoint = receptionPoint.receptionPoints
+        if (secondMode !== 0) {
+
+            await createMarkers(receptionPoint, receptionPointIcon, map, 'Пластик');
+
+            secondMode = 0;
+        }
+        else {
+
+            await createMarkers(receptionPoint, receptionPointIcon, map, '');
+
+            secondMode = -1;
+
+        }
+
+
+    })
+}
+
+function initCompanyMode() {
     let mode = 0;
     let modeButton = $(".organisation-swipe-block");
     let photosBlock = $(".photo-block");
     let mailBlock = $(".mail-block");
     let typeBlock = $(".organisation-type-block");
-    
-    modeButton.off("click").on("click", function(){
-        if(mode === 0){
+
+    modeButton.off("click").on("click", function () {
+        if (mode === 0) {
             typeBlock.css("display", "flex");
             mode++;
         }
-        else if(mode === 1){
+        else if (mode === 1) {
             mailBlock.css("display", "flex");
             photosBlock.css("display", "flex");
             mode++;
         }
-        else if(mode === 2){
+        else if (mode === 2) {
             photosBlock.hide();
             mailBlock.hide();
             typeBlock.hide();
@@ -31,7 +58,7 @@ function initCompanyMode(){
     })
 }
 
-function showReceptionPoint( receptionPoint ){
+function showReceptionPoint(receptionPoint) {
     let organisationInfoBlock = $(".organisation-info-block");
     let organisationName = $(".organisation-name");
     let organisationPlace = $(".organisation-place");
@@ -52,30 +79,31 @@ function showReceptionPoint( receptionPoint ){
     organisationInfoBlock.show();
     trashType.hide();
 
-    for(let i = 0; i < trash.length; i++){
+    for (let i = 0; i < trash.length; i++) {
+        console.log(trash[i].description)
         let block = $("<div/>").addClass("organisation-type");
         let blockType = $("<img/>");
-        switch(trash.description){
-            case "пластик" : 
+        switch (trash[i].description) {
+            case "Пластик":
                 blockType.attr("src", "./img/water-bottles.png");
                 block.addClass("bottle");
-            break;
-            case "батарейки" :
-                blockType.attr("src", "./img/buttery.png")    
+                break;
+            case "Батарейки":
+                blockType.attr("src", "./img/buttery.png")
                 block.addClass("battary");
-            break;
-            case "лампочки" :
+                break;
+            case "Лампочки":
                 blockType.attr("src", "./img/lamp.png");
                 block.addClass("lamp");
-            break;
-            case "тетрапак" :
+                break;
+            case "Тетрапак":
                 blockType.attr("src", "./img/tetrapack.png");
                 block.addClass("tetrapack");
-            break;
-            case "железо" :
+                break;
+            case "Железо":
                 blockType.attr("src", "./img/al_bin.png");
-                block.addClass("bin");   
-            break;
+                block.addClass("bin");
+                break;
         }
         block.append(blockType);
         organisationTypeBlock.append(block);
@@ -87,8 +115,8 @@ function showReceptionPoint( receptionPoint ){
 
 }
 
-function setFormatTime(time){
-    if(time < 10)
+function setFormatTime(time) {
+    if (time < 10)
         return "0" + time
     else
         return time

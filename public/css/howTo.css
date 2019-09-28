@@ -1,0 +1,75 @@
+.body{
+    min-height: 90vh;
+    font-family: "Amatic-Regular";
+    font-size: 30px;
+}
+
+body{
+    overflow: auto !important;
+}
+
+.body-header{
+    padding: 10px 30px;
+    text-align: center;
+    font-family: "Amatic-Bold";
+    font-size: 35px;
+    height: auto;
+    background-size: 100% 100%;
+}
+
+.line{
+    display: flex;
+    align-items: center;
+}
+
+.text-block{
+    padding: 10px 10px;
+}
+
+.green-recycling{
+    width: 95px;
+}
+
+.green-header{
+    background-image: url("../img/fon-head.png");
+}
+
+.blue-header{
+    background-image: url("../img/fon-head-blue.png");
+    margin: 40px 0;
+}
+
+.pad{
+    padding: 30px 40px;
+    position: relative;
+}
+
+.pad > img{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+}
+
+.center{
+    text-align: center;
+}
+
+.blue{
+    background: #B6E3FF20;
+}
+
+b{
+    font-family: "Amatic-Bold";
+}
+
+@font-face {
+    font-family: "Amatic-Bold";
+    src: url("../fonts/AmaticSC-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Amatic-Regular";
+    src: url("../fonts/AmaticSC-Regular.ttf");
+}

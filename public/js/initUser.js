@@ -1,4 +1,5 @@
 async function initUser(){
+
     let data = await requests.post("/users/getUserInfo");
 
     let bonusBlock = $(".user-bunus");
@@ -16,7 +17,7 @@ async function initUser(){
     }
     else{
         interButton.on("click", function(){
-            $(location).attr("href", "./login.html");
+            $(location).attr("href", "./inter.html");
         })
     }
 }

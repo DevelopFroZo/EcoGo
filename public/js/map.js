@@ -3,9 +3,11 @@ let requests = new Requests( {
     responsePreprocess : data => JSON.parse( data )
 } );
 
+var receptionPointIcon;
+var map
 let marker
 let coords = [ 55.790244, 49.119316 ]
-let markers = []
+var markers = []
 
 async function getPoints(){
     return res = await requests.post(
@@ -115,10 +117,10 @@ async function createMarkers( receptionPoint, receptionPointIcon, map, type ){
 
         receptionPoint[i].types = res
 
-        if( type >= 0 ){
+        if( type !== "" ){
             let e = el.types.typesOfTrashes
             for( let i = 0; i < e.length; i++ ){
-                if( e[i].typeoftrashid == type ){
+                if( e[i].description == type ){
                     marker = DG.marker( [ el.lat, el.long ], { icon : receptionPointIcon } );
                     marker.addTo( map ).bindLabel( el.name );
                     marker.addEventListener( "click", () => showReceptionPoint( receptionPoint[i], res ) )
@@ -135,11 +137,9 @@ async function createMarkers( receptionPoint, receptionPointIcon, map, type ){
 }
 
 function map() {
-    let map
-
     DG.then( async () => {
         // иконка
-        let receptionPointIcon = DG.icon( {
+        receptionPointIcon = DG.icon( {
             iconUrl: './img/v4.png',
             iconSize: [40, 40]
         } )
@@ -181,10 +181,10 @@ function map() {
         receptionPoint = receptionPoint.receptionPoints
 
         // вывод меток
-        await createMarkers( receptionPoint, receptionPointIcon, map, -1 )
-        await createMarkers( receptionPoint, receptionPointIcon, map, 1 )
+        // await createMarkers( receptionPoint, receptionPointIcon, map, -1 )
+        // await createMarkers( receptionPoint, receptionPointIcon, map, 1 )
         
-        await createMarkers( receptionPoint, receptionPointIcon, map, 2 )
+        // await createMarkers( receptionPoint, receptionPointIcon, map, 2 )
         
         //console.log( getTop( receptionPoint, types, [ coords[0], coords[1] ] ) )
     } ) 

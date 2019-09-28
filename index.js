@@ -27,6 +27,7 @@ function index(){
   server.use( "/typesOfTrashes", routers.typesOfTrashes );
   server.use( "/rates", routers.rates  );
   server.use( "/users", routers.users );
+  server.use( "/companies", routers.companies );
 
   // Settings
   server.use( express.static( siteFolder ) );

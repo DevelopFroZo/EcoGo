@@ -49,10 +49,14 @@ function deg2rad(deg) {
     return deg * (Math.PI/180)
 }
 
-function getTop( receptionPoints ){
-    // let top = {
-    //     ''
-    // }
+function getTop( receptionPoints, types ){
+    let data;
+
+    for( let i = 0; i < types.length; i++ ){
+        console.log( receptionPoint )
+        return
+    }
+
     console.log( receptionPoints )
 }
 
@@ -103,23 +107,33 @@ function map() {
         //     }
         //  ) )
 
+        let types = []
+
         // вывод меток
         for( let i = 0; i < receptionPoint.length; i++ ){
             let el = receptionPoint[i]
 
-            let typeOfTrashes =  await requests.post( 
+            let res =  await requests.post( 
                 '/typesOfTrashes/get',
                 {
                     receptionPointId : receptionPoint[i].id
                 }
             )
 
+            for( let j = 0; j < res.typesOfTrashes.length; j++ ){
+                if( types.indexOf( res.typesOfTrashes[j].typeoftrashid ) == -1 ){
+                    types.push( res.typesOfTrashes[j].typeoftrashid )
+                } 
+            }
+
+            receptionPoint[i].types = res
+
             marker = DG.marker( [ el.lat, el.long ], { icon : receptionPointIcon } );
             marker.addTo( map ).bindLabel( el.name );
-            marker.addEventListener( "click", () => showReceptionPoint( receptionPoint[i], typeOfTrashes[i] ) )
+            marker.addEventListener( "click", () => showReceptionPoint( receptionPoint[i], res ) )
         }
 
-        getTop( receptionPoint )
+        getTop( receptionPoint, types )
 
         //getCoordsViaAdress( 'Казань Зинина 5' )
         //getAddressViaCoords( 37.611347, 55.760241 )

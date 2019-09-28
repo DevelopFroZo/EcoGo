@@ -3,14 +3,14 @@ class Rates{
     this.modules = modules;
   }
 
-  async add( description, cost ){
+  async add( typeOfTrashId, description, cost ){
     let id;
 
     id = ( await this.modules.db.query(
-      "insert into rates( description, cost ) " +
-      "values( $1, $2 ) " +
+      "insert into rates( typeoftrashid, description, cost ) " +
+      "values( $1, $2, $3 ) " +
       "returning id",
-      [ description, cost ]
+      [ typeOfTrashId, description, cost ]
     ) ).rows[0].id;
 
     return {
@@ -27,6 +27,22 @@ class Rates{
     );
 
     return { isSuccess : true };
+  }
+
+  async get( typeOfTrashId ){
+    let rates;
+
+    rates = ( await this.modules.db.query(
+      "select description, cost " +
+      "from rates " +
+      "where typeoftrashid = $1",
+      [ typeOfTrashId ]
+    ) ).rows;
+
+    return {
+      isSuccess : true,
+      rates
+    };
   }
 }
 

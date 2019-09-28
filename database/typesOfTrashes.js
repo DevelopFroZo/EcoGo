@@ -33,7 +33,7 @@ class TypesOfTrashes{
     let typesOfTrashes;
 
     typesOfTrashes = ( await this.modules.db.query(
-      "select tot.description " +
+      "select tottorp.typeoftrashid, tot.description " +
       "from tottorp, typesoftrashes as tot " +
       "where tottorp.typeoftrashid = tot.id and receptionpointid = $1",
       [ receptionPointId ]

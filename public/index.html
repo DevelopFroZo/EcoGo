@@ -1,22 +1,103 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>ecoGo</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-        <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
-    </head>
-    <body>
-        
-        <header>
-            <button class = "burger-button"></button>
-            <img class = "logo" alt = "logo" src = "">
-        </header>
 
-        <script src="./js/jquery.js"></script>
-        <script src="./js/start.js"></script>
-        <!-- <div id="map" style="width:1024px; height:640px"></div> -->
-    </body>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ecoGo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/start.css">
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-block">
+            <button class="burger-button">
+                <img src="img/btn-menu.png" src="burger">
+            </button>
+            <img class="logo" alt="logo" src="./img/logo-name.png">
+
+        </div>
+        <div class="burger">
+            123<br>
+            123<br>
+            123<br>
+            123<br>
+            123<br>
+        </div>
+    </header>
+
+    <div class="map-block">
+        <div id="map"></div>
+    </div>
+
+    <div class="trash-type">
+        <div class="trash-buttons">
+            <button class="trash-type-button"></button>
+            <button class="trash-type-button"></button>
+            <button class="trash-type-button"></button>
+            <button class="trash-type-button"></button>
+            <button class="trash-type-button"></button>
+        </div>
+    </div>
+
+    <div class="organisation-info-block">
+        <div class = "organisation-swipe-block">
+            <button class="organisation-swipe"></button>
+        </div>
+        <div class="center-text">
+            <div class="organisation-name-block">
+                <div class="organisation-name">ООО "Зеленей"</div>
+                <div class="organisation-token">1-5</div>
+            </div>
+        </div>
+        <div class="organisation-type-block">
+            <div class="organisation-type">
+                <img src="./img/water-bottles.png" alt="water">
+            </div>
+            <div class="organisation-type">
+                <img src="./img/water-bottles.png" alt="water">
+            </div>
+            <div class="organisation-type">
+                <img src="./img/water-bottles.png" alt="water">
+            </div>
+        </div>
+        <div class="organisation-time-block">
+            <div class="organisation-time-text">Время работы</div>
+            <div class="organisation-time">09:00-11:00</div>
+        </div>
+        <div class="line">
+            <img src="img/phone.png" alt="phone">
+            <a href="tel:+79141234567" class="tel">+79141234567</a>
+        </div>
+        <div class="line mail-block">
+            <img src="img/planet.png" alt="mail">
+            <div class="mail">www.toBeGreen.com</div>
+        </div>
+        <div class = "photo-block">
+            <div class = "photos">
+                <img src = "img/building.jpg">
+                <img src = "img/building-2.jpg">
+                <img src = "img/building-3.jpg">
+            </div>
+            <button class = "add-photo">
+                <img src = "img/photo.png">
+            </button>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-line">
+            ©2019 Phobos
+        </div>
+    </footer>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/start.js"></script>
+    <script src = "../map/index.js"></script>
+</body>
+
 </html>

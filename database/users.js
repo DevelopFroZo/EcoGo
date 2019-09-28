@@ -67,12 +67,19 @@ class Users{
   async getUserInfo( token ){
     let data;
 
-    data = ( await this.modules.db.query(
+    data = await this.modules.db.query(
       "select fi, email, phone, balance, qrcode " +
       "from users " +
       "where token = $1",
       [ token ]
-    ) ).rows[0];
+    );
+
+    if( data.rowCount === 0 ) return {
+      isSuccess : false,
+      message : "Invalid token"
+    };
+
+    data = data.rows[0];
 
     return {
       isSuccess : true,

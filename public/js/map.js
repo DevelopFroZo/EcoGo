@@ -115,10 +115,11 @@ async function createMarkers( receptionPoint, receptionPointIcon, map, type ){
 
         receptionPoint[i].types = res
 
-        if( type >= 0 ){
+        if( type !== '' ){
             let e = el.types.typesOfTrashes
+            console.log( e )
             for( let i = 0; i < e.length; i++ ){
-                if( e[i].typeoftrashid == type ){
+                if( e[i].description == type ){
                     marker = DG.marker( [ el.lat, el.long ], { icon : receptionPointIcon } );
                     marker.addTo( map ).bindLabel( el.name );
                     marker.addEventListener( "click", () => showReceptionPoint( receptionPoint[i], res ) )
@@ -181,10 +182,8 @@ function map() {
         receptionPoint = receptionPoint.receptionPoints
 
         // вывод меток
-        await createMarkers( receptionPoint, receptionPointIcon, map, -1 )
-        await createMarkers( receptionPoint, receptionPointIcon, map, 1 )
-        
-        await createMarkers( receptionPoint, receptionPointIcon, map, 2 )
+        await createMarkers( receptionPoint, receptionPointIcon, map, '' )
+        //await createMarkers( receptionPoint, receptionPointIcon, map, 'Лампочки' )
         
         //console.log( getTop( receptionPoint, types, [ coords[0], coords[1] ] ) )
     } ) 

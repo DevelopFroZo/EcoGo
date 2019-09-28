@@ -1,0 +1,90 @@
+:root {
+    --gray: #F3F3F3;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.header-block {
+    width: 100%;
+    height: 5vh;
+    position: relative;
+}
+
+header {
+    background: var(--gray);
+    position: relative;
+}
+
+.burger-button {
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(calc(-50% + 3px));
+}
+
+.burger-button>img {
+    width: 25px;
+}
+
+.burger>a {
+    text-decoration: none;
+    color: black;
+    font-size: 32px;
+    font-family: "Amatic-Regular";
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+}
+
+.burger {
+    position: absolute;
+    top: 5vh;
+    z-index: 10;
+    background: var(--gray);
+    width: 100%;
+    display: none;
+    text-align: center;
+}
+
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+}
+
+.logo-img {
+    height: 22px;
+}
+
+footer {
+    height: 5vh;
+    margin: 0 40px;
+}
+
+.footer-line {
+    border: solid var(--gray);
+    border-width: 1px 0 0 0;
+    padding: 10px;
+    text-align: center;
+    color: #CFCFCF;
+}
+
+@font-face {
+    font-family: "Amatic-Bold";
+    src: url("../fonts/AmaticSC-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Amatic-Regular";
+    src: url("../fonts/AmaticSC-Regular.ttf");
+}

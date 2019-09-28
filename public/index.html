@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/start.css">
+    <link rel="stylesheet" href="./css/footerAndHeader.css">
     <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
 </head>
 
@@ -21,11 +22,11 @@
 
         </div>
         <div class="burger">
-            123<br>
-            123<br>
-            123<br>
-            123<br>
-            123<br>
+            <a href="">Главная</a>
+            <a href="">Личный кабинет</a>
+            <a href="">Карта</a>
+            <a href="">Как сдавать?</a>
+            <a href="">Бонусы</a>
         </div>
     </header>
 
@@ -34,23 +35,47 @@
     </div>
 
     <div class="trash-type">
-        <div class="trash-buttons">
-            <button class="trash-type-button"></button>
-            <button class="trash-type-button"></button>
-            <button class="trash-type-button"></button>
-            <button class="trash-type-button"></button>
-            <button class="trash-type-button"></button>
+        <div class="organisation-swipe-block" id="trash-block">
+            <button class="organisation-swipe"></button>
+        </div>
+        <div class="serch-block">
+            <img src="img/loupe.png" alt="search">
+            <input type="text">
+            <button class="clear-input">
+                <img src="./img/exit.png" alt="clear">
+            </button>
+        </div>
+        <div class="trash-buttons between">
+            <button class="trash-type-button">
+                <img src="img/water-bottles.png" alt="bottle">
+            </button>
+            <button class="trash-type-button">
+                <img src="img/buttery.png" alt="buttery">
+            </button>
+            <button class="trash-type-button">
+                <img src="img/water-bottles.png" alt="bottle">
+            </button>
+            <button class="trash-type-button">
+                <img src="img/buttery.png" alt="buttery">
+            </button>
+        </div>
+        <div class="trash-buttons not-between">
+            <button class="trash-type-button">
+                <img src="img/water-bottles.png" alt="bottle">
+            </button>
+            <button class="trash-type-button">
+                •••
+            </button>
         </div>
     </div>
 
     <div class="organisation-info-block">
-        <div class = "organisation-swipe-block">
-            <button class="organisation-swipe"></button>
+        <div class="organisation-swipe-block">
+            <button class="organisation-swipe" id="organisation-block"></button>
         </div>
         <div class="center-text">
             <div class="organisation-name-block">
                 <div class="organisation-name">ООО "Зеленей"</div>
-                <div class="organisation-token">1-5</div>
             </div>
         </div>
         <div class="organisation-type-block">
@@ -64,6 +89,10 @@
                 <img src="./img/water-bottles.png" alt="water">
             </div>
         </div>
+        <div class="organisation-place-block">
+            <div class="organisation-place">Ташаяк, 5, Казань</div>
+            <div class="organisation-token">1-5 баллов</div>
+        </div>
         <div class="organisation-time-block">
             <div class="organisation-time-text">Время работы</div>
             <div class="organisation-time">09:00-11:00</div>
@@ -76,28 +105,29 @@
             <img src="img/planet.png" alt="mail">
             <div class="mail">www.toBeGreen.com</div>
         </div>
-        <div class = "photo-block">
-            <div class = "photos">
-                <img src = "img/building.jpg">
-                <img src = "img/building-2.jpg">
-                <img src = "img/building-3.jpg">
+        <div class="photo-block">
+            <div class="photos">
+                <img src="img/building.jpg">
+                <img src="img/building-2.jpg">
+                <img src="img/building-3.jpg">
             </div>
-            <button class = "add-photo">
-                <img src = "img/photo.png">
+            <button class="add-photo">
+                <img src="img/photo.png">
             </button>
         </div>
 
     </div>
 
-    <footer>
+    <!-- <footer>
         <div class="footer-line">
             ©2019 Phobos
         </div>
-    </footer>
+    </footer> -->
 
     <script src="./js/jquery.js"></script>
     <script src="./js/start.js"></script>
     <script src = "../map/index.js"></script>
+    <script src="./js/initBurger.js"></script>
 </body>
 
 </html>

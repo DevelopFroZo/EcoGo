@@ -1,5 +1,3 @@
-import { FORMERR } from "dns";
-
 let requests = new Requests( {
     dataType : "json",
     responsePreprocess : data => JSON.parse( data )
@@ -51,16 +49,11 @@ function deg2rad(deg) {
     return deg * (Math.PI/180)
 }
 
-function getTop( receptionPoints ){
+function getTop( receptionPoints, types ){
     let data;
 
-    for( let i = 0; i < receptionPoints.length; i++ ){
-        res = requests.post(
-            '/typesOfTrashes/get',
-                {
-                    receptionPointId : receptionPoint[i].id
-                }
-        )
+    for( let i = 0; i < types.length; i++ ){
+        console.log( receptionPoint )
         return
     }
 
@@ -127,9 +120,13 @@ function map() {
                 }
             )
 
-            for( let j = 0; j < res.typeOfTrashes.length; i++ ){
-                
+            for( let j = 0; j < res.typesOfTrashes.length; j++ ){
+                if( types.indexOf( res.typesOfTrashes[j].typeoftrashid ) == -1 ){
+                    types.push( res.typesOfTrashes[j].typeoftrashid )
+                } 
             }
+
+            receptionPoint[i].types = res
 
             marker = DG.marker( [ el.lat, el.long ], { icon : receptionPointIcon } );
             marker.addTo( map ).bindLabel( el.name );

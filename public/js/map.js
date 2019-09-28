@@ -9,17 +9,56 @@ async function getPoints(){
     )
 }
 
-function markClick(){
-    
+//Получение координат по адресу (вводить адрес в формате "Город улица дом"), возвращвет массив из двух элементов
+async function getCoordsViaAdress( address ){
+    let data = address.split( ' ' )
+    address = ''
+    for( let i = 0; i < data.length; i++ ){
+        if( i == data.length-1 ) address += data[i]
+        else address+= data[i] + '+'
+    } 
+    data = await requests.get(
+        `https://geocode-maps.yandex.ru/1.x/?apikey=7d628504-e28d-43e5-9119-114035dcc629&format=json&geocode=${address}`
+    )
+
+    return data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split( ' ' ) 
+}
+
+//Получение адреса по координатам, возвращвет строку
+async function getAddressViaCoords( lat, long ){
+    let data = await requests.get(
+        `https://geocode-maps.yandex.ru/1.x/?apikey=7d628504-e28d-43e5-9119-114035dcc629&format=json&geocode=${lat},${long}`
+    )
+
+    data = data.response.GeoObjectCollection.featureMember[0].GeoObject 
+
+    return `${data.name}, ${data.description}`
+} 
+
+function getDistance(lat1,lon1,lat2,lon2) {
+    let R = 6371; // Radius of the earth in km
+    let dLat = deg2rad(lat2-lat1);  // deg2rad below
+    let dLon = deg2rad(lon2-lon1); 
+    let a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2); 
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    let d = R * c * 1000; // Distance in km
+    return Math.floor( d );
+  }
+  
+function deg2rad(deg) {
+    return deg * (Math.PI/180)
+}
+
+function getTop( receptionPoints ){
+    // let top = {
+    //     ''
+    // }
+    console.log( receptionPoints )
 }
 
 function map() {
-    let coords = []
-    
-    coords.push( 54.98, 82.89 ) 
-    console.log( 2 )
-    console.log( DG, 1 )
     let map
+
     DG.then( async () => {
         // иконка
         let receptionPointIcon = DG.icon( {
@@ -31,8 +70,8 @@ function map() {
         map = DG.map( "map", {
             center : [ 55.790244, 49.119316 ],
             zoom : 16,
-            //fullscreenControl : false,
-            //zoomControl : false
+            fullscreenControl : false,
+            zoomControl : false
         } );
 
         marker = DG.marker( [ 55.790244, 49.119316 ] );
@@ -56,19 +95,35 @@ function map() {
         // post на получение меток
         receptionPoint = await getPoints() 
         receptionPoint = receptionPoint.receptionPoints
-        console.log( receptionPoint )
-        
+         
+        // console.log( await requests.post( 
+        //     '/rates/get',
+        //     {
+        //         typeOfTrashId : 1
+        //     }
+        //  ) )
+
         // вывод меток
         for( let i = 0; i < receptionPoint.length; i++ ){
             let el = receptionPoint[i]
+
+            let typeOfTrashes =  await requests.post( 
+                '/typesOfTrashes/get',
+                {
+                    receptionPointId : receptionPoint[i].id
+                }
+            )
+
             marker = DG.marker( [ el.lat, el.long ], { icon : receptionPointIcon } );
             marker.addTo( map ).bindLabel( el.name );
-            marker.addEventListener( "click", () => showReceptionPoint( receptionPoint[i] ) )
+            marker.addEventListener( "click", () => showReceptionPoint( receptionPoint[i], typeOfTrashes[i] ) )
         }
+
+        getTop( receptionPoint )
 
         //getCoordsViaAdress( 'Казань Зинина 5' )
         //getAddressViaCoords( 37.611347, 55.760241 )
-        console.log( getDistance( 55.781376, 49.113619, 55.788423, 49.12814 ) )
+        //console.log( getDistance( 55.781376, 49.113619, 55.788423, 49.12814 ) )
     } ) 
         
     

@@ -6,7 +6,7 @@ async function addReceptionPoints(){
   companies = [ "ООО Исток", "Эколайн", "Хартия" ];
   typesOfTrashes = [
     {
-      description : "Бумага",
+      description : "Пластик",
       rates : [
         {
           typeOfTrashId : 1,
@@ -21,7 +21,7 @@ async function addReceptionPoints(){
       ]
     },
     {
-      description : "Пластик",
+      description : "Батарейки",
       rates : [
         {
           typeOfTrashId : 2,
@@ -41,7 +41,7 @@ async function addReceptionPoints(){
       ]
     },
     {
-      description : "Металл",
+      description : "Лампочки",
       rates : [
         {
           typeOfTrashId : 3,
@@ -51,7 +51,7 @@ async function addReceptionPoints(){
       ]
     },
     {
-      description : "Батарейки",
+      description : "Тетрапак",
       rates : [
         {
           typeOfTrashId : 4,
@@ -71,7 +71,7 @@ async function addReceptionPoints(){
       ]
     },
     {
-      description : "Стекло",
+      description : "Железо",
       rates : [
         {
           typeOfTrashId : 5,
@@ -87,26 +87,6 @@ async function addReceptionPoints(){
           typeOfTrashId : 5,
           description : "1.5л",
           cost : 20
-        }
-      ]
-    },
-    {
-      description : "Одежда",
-      rates : [
-        {
-          typeOfTrashId : 6,
-          description : "За шт",
-          cost : 5
-        }
-      ]
-    },
-    {
-      description : "Лампочки",
-      rates : [
-        {
-          typeOfTrashId : 7,
-          description : "За шт",
-          cost : 5
         }
       ]
     }
@@ -336,29 +316,29 @@ async function index(){
   //   { typeOfTrashId : 1 }
   // );
   // console.log( data );
-  data = await requests.post(
-    "/users/register",
-    {
-      fi : "Иванов Иван",
-      email : "example@example.com",
-      phone : "89999999999",
-      password : "123456"
-    }
-  );
-  console.log( data );
-  data = await requests.post(
-    "/users/auth",
-    {
-      emailOrPhone : "example@example.com",
-      password : "123456"
-    }
-  );
-  cookie.set( "token", data.token );
-  console.log( data );
-  data = await requests.post(
-    "/users/getUserInfo"
-  );
-  console.log( data );
+  // data = await requests.post(
+  //   "/users/register",
+  //   {
+  //     fi : "Иванов Иван",
+  //     email : "example@example.com",
+  //     phone : "89999999999",
+  //     password : "123456"
+  //   }
+  // );
+  // console.log( data );
+  // data = await requests.post(
+  //   "/users/auth",
+  //   {
+  //     emailOrPhone : "example@example.com",
+  //     password : "123456"
+  //   }
+  // );
+  // cookie.set( "token", data.token );
+  // console.log( data );
+  // data = await requests.post(
+  //   "/users/getUserInfo"
+  // );
+  // console.log( data );
   //addReceptionPoints();
 }
 

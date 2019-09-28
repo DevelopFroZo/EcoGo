@@ -336,29 +336,30 @@ async function index(){
   //   { typeOfTrashId : 1 }
   // );
   // console.log( data );
-  // data = await requests.post(
-  //   "/users/register",
-  //   {
-  //     fi : "Иванов Иван",
-  //     email : "example@example.com",
-  //     phone : "89999999999",
-  //     password : "123456"
-  //   }
-  // );
-  // console.log( data );
-  // data = await requests.post(
-  //   "/users/auth",
-  //   {
-  //     emailOrPhone : "example@example.com",
-  //     password : "123456"
-  //   }
-  // );
-  // console.log( data );
-  // data = await requests.post(
-  //   "/users/test"
-  // );
-  // console.log( data );
-  addReceptionPoints();
+  data = await requests.post(
+    "/users/register",
+    {
+      fi : "Иванов Иван",
+      email : "example@example.com",
+      phone : "89999999999",
+      password : "123456"
+    }
+  );
+  console.log( data );
+  data = await requests.post(
+    "/users/auth",
+    {
+      emailOrPhone : "example@example.com",
+      password : "123456"
+    }
+  );
+  cookie.set( "token", data.token );
+  console.log( data );
+  data = await requests.post(
+    "/users/getUserInfo"
+  );
+  console.log( data );
+  //addReceptionPoints();
 }
 
 window.addEventListener( "load", index );

@@ -15,8 +15,10 @@ async function authHandler( req, res ){
   ) );
 }
 
-async function testHandler( req, res ){
-  res.send( await req.db.users.test() );
+async function getUserInfoHandler( req, res ){
+  res.send( await req.db.users.getUserInfo(
+    req.cookies.token
+  ) );
 }
 
 function index(){
@@ -26,7 +28,7 @@ function index(){
 
   router.post( "/register", registerHandler );
   router.post( "/auth", authHandler );
-  router.post( "/test", testHandler );
+  router.post( "/getUserInfo", getUserInfoHandler );
 
   return router;
 }

@@ -11,28 +11,35 @@
 </head>
 
 <body>
-    
+
     <header>
         <div class="header-block">
             <button class="burger-button">
                 <img src="img/btn-menu.png" src="burger">
             </button>
             <img class="logo" alt="logo" src="./img/logo-name.png">
-            
+            <button class="user-logo-block">
+                <img src="./img/user-pic.png" alt="user" class="user-logo">
+                <div class="user-bonus">
+                    35
+                </div>
+            </button>
+            <button class = "login">
+                <img src = "./img/entry.png" alt = "inter">
+            </button>
         </div>
         <div class="burger">
             <a href="">Главная</a>
-            <a href="">Личный кабинет</a>
-            <a href="">Карта</a>
+            <a href="./personalArea.html">Личный кабинет</a>
             <a href="">Как сдавать?</a>
             <a href="">Бонусы</a>
         </div>
     </header>
-    
+
     <div class="map-block">
         <div id="map"></div>
     </div>
-    
+
     <div class="trash-type">
         <div class="organisation-swipe-block" id="trash-block">
             <button class="organisation-swipe"></button>
@@ -44,7 +51,7 @@
                 <img src="./img/exit.png" alt="clear">
             </button>
         </div>
-        <div class = "trash-change">Выбери что хочешь сдать:</div>
+        <div class="trash-change">Выбери что хочешь сдать:</div>
         <div class="trash-buttons between">
             <button class="trash-type-button bottle">
                 <img src="img/water-bottles.png" alt="bottle">
@@ -67,12 +74,12 @@
                 •••
             </button>
         </div>
-        <button id = "points-near">
-            <img src = "./img/near.png" alt = "near">
+        <button id="points-near">
+            <img src="./img/near.png" alt="near">
             Рядом
         </button>
     </div>
-    
+
     <div class="organisation-info-block">
         <div class="organisation-swipe-block">
             <button class="organisation-swipe" id="organisation-block"></button>
@@ -103,7 +110,7 @@
         </div>
         <div class="line">
             <img src="img/phone.png" alt="phone">
-            <a href="tel:+79141234567" class="tel" class = "organisation-number">+79141234567</a>
+            <a href="tel:+79141234567" class="tel" class="organisation-number">+79141234567</a>
         </div>
         <div class="line mail-block">
             <img src="img/planet.png" alt="mail">
@@ -117,22 +124,23 @@
                 <img src="img/photo.png">
             </button>
         </div>
-        
+
     </div>
-    
+
     <!-- <footer>
         <div class="footer-line">
             ©2019 Phobos
         </div>
     </footer> -->
-    
+
     <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
-    <script type = "text/javascript" src = "js/type.js"></script>
-    <script type = "text/javascript" src = "js/requests.js"></script>
-    <script type = "text/javascript" src = "js/cookie.js"></script>
+    <script type="text/javascript" src="js/type.js"></script>
+    <script type="text/javascript" src="js/requests.js"></script>
+    <script type="text/javascript" src="js/cookie.js"></script>
     <script src="./js/jquery.js"></script>
-    <script src="./js/map.js" ></script>
+    <script src="./js/map.js"></script>
     <script src="./js/start.js"></script>
+    <script src="./js/initUser.js"></script>
     <script src="./js/initBurger.js"></script>
 </body>
 

@@ -1,6 +1,7 @@
 $(document).ready(function () {
     initBurger();
     initCompanyMode();
+    map()
 })
 
 function initCompanyMode(){

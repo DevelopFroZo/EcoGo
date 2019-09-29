@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ecoGo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/order.css">
+    <link rel="stylesheet" href="./css/inter.css">
+    <link rel="stylesheet" href="./css/footerAndHeader.css">
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-block">
+            <button class="burger-button">
+                <img src="img/btn-menu.png" src="burger">
+            </button>
+            <img class="logo" alt="logo" src="./img/logo-name.png">
+            <button class="user-logo-block">
+                <img src="./img/user-pic.png" alt="user" class="user-logo">
+                <div class="user-bonus">
+                    
+                </div>
+            </button>
+            <button class="login">
+                <img src="./img/entry.png" alt="inter">
+            </button>
+        </div>
+        <div class="burger">
+            <a href="./landing.html">Главная</a>
+            <a href="./index.html">Карта</a>
+            <a href="./howTo.html">Как сдавать?</a>
+            <a href="">Бонусы</a>
+        </div>
+    </header>
+
+    <div class="form">
+        <div class="inter-block">
+            <div class="login-head">
+                <img src="img/Logo.png" alt="logo"><br>
+                Вывоз вторсырья
+            </div>
+            <div class="change-block">
+                <label>Вид вторсырья:</label>
+                <div class="line">
+                    <button class="trash-type-button" id="bottle-button">
+                        <img src="img/water-bottles.png" alt="bottle">
+                    </button>
+                    <button class="trash-type-button" id="buttery-button">
+                        <img src="img/buttery.png" alt="buttery">
+                    </button>
+                    <button class="trash-type-button" id="tetrapack-button">
+                        <img src="img/tetrapack.png" alt="tetrapack">
+                    </button>
+                    <button class="trash-type-button" id="bin-button">
+                        <img src="img/al_bin.png" alt="al_bin">
+                    </button>
+                </div>
+                <div class="line">
+                    <button class="trash-type-button" id="lamp-button">
+                        <img src="img/lamp.png" alt="eat">
+                    </button>
+                    <button class="trash-type-button">
+                        •••
+                    </button>
+                    <button class="trash-type-button hidden">
+                    </button>
+                    <button class="trash-type-button hidden">
+                    </button>
+                </div>
+            </div>
+            <div class="full-input-block">
+                <label for="mail">Адресс</label>
+                <div class="input-block">
+                    <img src="./img/house.jpg" alt="house">
+                    <input type="text" name="house" id="house" placeholder="Введите адресс">
+                </div>
+            </div>
+            <div class="full-input-block">
+                <label for="password">Примерное количество в литрах</label>
+                <div class="input-block">
+                    <img src="./img/kg.png" alt="kg">
+                    <input type="number" name="kg" id="kg" placeholder="20">
+                </div>
+            </div>
+            <div class="info-block">
+                <input type="checkbox" for="personal" id="check">
+                <p>
+                    <span class="personal-input">Нажимая кнопку войти, я даю согласие на </span>
+                    <a href="" class = "user-info">обработку персональных данных</a>
+                </p>
+            </div>
+            <button id="inter">
+                ЗАКАЗАТЬ
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-line">
+            ©2019 Phobos
+        </div>
+    </footer>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/type.js"></script>
+    <script src="./js/requests.js"></script>
+    <script src="./js/cookie.js"></script>
+    <script src="./js/initBurger.js"></script>
+    <script src="./js/order.js"></script>
+    <script src="./js/initUser.js"></script>
+
+</body>
+
+</html>

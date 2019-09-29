@@ -1,0 +1,74 @@
+body{
+    overflow: auto;
+}
+
+.form{
+    min-height: 90vh;
+    background-image: none !important;
+}
+
+.user-info{
+    color: #BBE639 !important;
+}
+
+.line{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.trash-type-button{
+    border: none;
+    background-color: #E0E0E0;
+    width: 50px;
+    height: 50px; 
+    border-radius: 100%;
+    position: relative;
+    font-size: 30px;
+}
+
+.trash-type-button > img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35px;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.change-block{
+    margin-bottom: 40px;
+}
+
+.tetrapack{
+    background: #9C89FA;
+}
+
+.lamp{
+    background: #D38DE0;
+}
+
+.bottle{
+    background: #E6A139;
+}
+
+.battary{
+    background: #00C5FA;
+}
+
+.bin{
+    background: #69BEAA;
+}
+
+@font-face {
+    font-family: "Amatic-Bold";
+    src: url("../fonts/AmaticSC-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Amatic-Regular";
+    src: url("../fonts/AmaticSC-Regular.ttf");
+}

@@ -8,15 +8,51 @@ $(document).ready(function () {
 
 function initMode() {
     let bottleButton = $("#bottle-button");
-    
+    let butteryButton = $("#buttery-button");
+    let tetrapackButton = $("#tetrapack-button");
+    let binButton = $("#bin-button");
+    let lampButton = $("#lamp-button");
 
     let secondMode = -1;
+    let activeClass = "";
 
     bottleButton.on("click", async function () {
         secondMode = await checkFilter("Пластик", secondMode, 0);
+        checkActiveFilter("bottle", bottleButton);
+    })
+    butteryButton.on("click", async function () {
+        secondMode = await checkFilter("Батарейки", secondMode, 1);
+        checkActiveFilter("battary", butteryButton);
+    })
+    tetrapackButton.on("click", async function () {
+        secondMode = await checkFilter("Тетрапак", secondMode, 2);
+        checkActiveFilter("tetrapack", tetrapackButton);
+    })
+    binButton.on("click", async function () {
+        secondMode = await checkFilter("Железо", secondMode, 3);
+        checkActiveFilter("bin", binButton);
+    })
+    lampButton.on("click", async function () {
+        secondMode = await checkFilter("Лампочки", secondMode, 4);
+        checkActiveFilter("lamp", lampButton);
     })
 
+    function checkActiveFilter(clas, button) {
+        if (clas !== activeClass) {
+            $(".active").removeClass(activeClass)
+            activeClass = clas;
+        }
+        if (button.hasClass(clas)) {
+            button.removeClass(clas + " active");
+        }
+        else {
+            button.addClass(clas + " active");
+        }
+    }
+
 }
+
+
 
 async function checkFilter(name, secondMode, number) {
     receptionPoint = await getPoints()

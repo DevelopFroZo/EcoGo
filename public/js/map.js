@@ -8,6 +8,7 @@ var map
 let marker
 let coords = [ 55.790244, 49.119316 ]
 var markers = []
+var types
 
 async function getPoints(){
     return res = await requests.post(
@@ -86,6 +87,18 @@ function getTop( receptionPoints, types, coords ){
         } )
     }
 
+    console.log( min )
+
+    for (let i = 0, endI = min.length - 1; i < endI; i++) {
+        for (let j = 0, endJ = endI - i; j < endJ; j++) {
+            if (min[j].distance > min[j + 1].distance) {
+                let swap = min[j].distance;
+                min[j].distance = min[j + 1].distance;
+                min[j + 1].distance = swap;
+            }
+        }
+    }
+
     return min
 }
 
@@ -96,7 +109,7 @@ async function createMarkers( receptionPoint, receptionPointIcon, map, type ){
 
     markers = []
 
-    let types = []
+    types = []
     for( let i = 0; i < receptionPoint.length; i++ ){
         let el = receptionPoint[i]
 
@@ -132,6 +145,15 @@ async function createMarkers( receptionPoint, receptionPointIcon, map, type ){
             markers.push( marker )
         }
     }
+}
+
+async function search( address ){
+    let addressCoords = await getCoordsViaAdress( address )
+    console.log( addressCoords )
+    map.setView( 
+        addressCoords,
+        16
+     )
 }
 
 function map() {
@@ -180,12 +202,8 @@ function map() {
 
         // вывод меток
         await createMarkers( receptionPoint, receptionPointIcon, map, "" )
-        // await createMarkers( receptionPoint, receptionPointIcon, map, 1 )
-        
-        // await createMarkers( receptionPoint, receptionPointIcon, map, 2 )
-        
-        //console.log( getTop( receptionPoint, types, [ coords[0], coords[1] ] ) )
+
+        getTop( receptionPoint, types, coords)
+        //await search( 'Иркутск Пискунова 102' )
     } ) 
-        
-    
 }

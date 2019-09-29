@@ -116,6 +116,11 @@ footer {
     height: 4vh;
 }
 
+.burger > a:not(:last-child){
+    border: solid #D2D2D2;
+    border-width: 0 0 1px 0;
+}
+
 @font-face {
     font-family: "Amatic-Bold";
     src: url("../fonts/AmaticSC-Bold.ttf");

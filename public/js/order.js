@@ -37,10 +37,8 @@ function initMode() {
 function changeMode(clas, button){
     if(button.hasClass(clas)){
         button.removeClass(clas);
-        bl = false;
     }
     else{
         button.addClass(clas);
-        bl = true;
     }
 }

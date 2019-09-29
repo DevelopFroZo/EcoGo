@@ -87,6 +87,8 @@ function getTop( receptionPoints, types, coords ){
         } )
     }
 
+    console.log( min )
+
     for (let i = 0, endI = min.length - 1; i < endI; i++) {
         for (let j = 0, endJ = endI - i; j < endJ; j++) {
             if (min[j].distance > min[j + 1].distance) {
@@ -126,14 +128,16 @@ async function createMarkers( receptionPoint, receptionPointIcon, map, type ){
 
         receptionPoint[i].types = res
 
-        if( type !== "" ){
+        if( type[0] !== "" ){
             let e = el.types.typesOfTrashes
-            for( let i = 0; i < e.length; i++ ){
-                if( e[i].description == type ){
-                    marker = DG.marker( [ el.lat, el.long ], { icon : receptionPointIcon } );
-                    marker.addTo( map ).bindLabel( el.name );
-                    marker.addEventListener( "click", () => showReceptionPoint( receptionPoint[i], res ) )
-                    markers.push( marker )
+            for( let j = 0; j < type.length; j++ ){
+                for( let k = 0; k < e.length; k++ ){
+                    if( e[k].description == type[j] ){
+                        marker = DG.marker( [ el.lat, el.long ], { icon : receptionPointIcon } );
+                        marker.addTo( map ).bindLabel( el.name );
+                        marker.addEventListener( "click", () => showReceptionPoint( receptionPoint[k], res ) )
+                        markers.push( marker )
+                    }
                 }
             }
         } else {
@@ -147,6 +151,7 @@ async function createMarkers( receptionPoint, receptionPointIcon, map, type ){
 
 async function search( address ){
     let addressCoords = await getCoordsViaAdress( address )
+    console.log( addressCoords )
     map.setView( 
         addressCoords,
         16
@@ -155,7 +160,6 @@ async function search( address ){
 
 function clickHandler( e ){
     marker.removeFrom( map )
-    marker = null
     coords = [e.latlng.lat, e.latlng.lng]
     marker = DG.marker( [e.latlng.lat, e.latlng.lng] )
     marker.addTo( map ).bindLabel( "Вы здесь" );
@@ -180,7 +184,7 @@ function map() {
         marker = DG.marker( [ coords[0], coords[1] ] );
         marker.addTo( map ).bindLabel( "Вы здесь" );
         map.setZoom( 16 ) 
-        //map.addEventListener( 'click', (e) => { clickHandler(e) } )
+        map.addEventListener( 'click', (e) => { clickHandler(e) } )
 
         // определение геолокации
         // map.locate({setView: true, watch: true})
@@ -201,7 +205,7 @@ function map() {
         receptionPoint = receptionPoint.receptionPoints
 
         // вывод меток
-        await createMarkers( receptionPoint, receptionPointIcon, map, "" )
+        await createMarkers( receptionPoint, receptionPointIcon, map, ["Лампочки", "Пластик"] )
 
         getTop( receptionPoint, types, coords)
         //await search( 'город Иркутск улица Пискунова дом 102' )

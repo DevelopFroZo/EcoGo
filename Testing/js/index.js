@@ -316,15 +316,15 @@ async function index(){
   //   { typeOfTrashId : 1 }
   // );
   // console.log( data );
-  // data = await requests.post(
-  //   "/users/register",
-  //   {
-  //     fi : "Иванов Иван",
-  //     email : "example@example.com",
-  //     phone : "89999999999",
-  //     password : "123456"
-  //   }
-  // );
+  data = await requests.post(
+    "/users/register",
+    {
+      fi : "Иванов Иван",
+      email : "example@example.com",
+      phone : "89999999999",
+      password : "123456"
+    }
+  );
   // console.log( data );
   // data = await requests.post(
   //   "/users/auth",
@@ -339,7 +339,7 @@ async function index(){
   //   "/users/getUserInfo"
   // );
   // console.log( data );
-  //addReceptionPoints();
+  addReceptionPoints();
 }
 
 window.addEventListener( "load", index );

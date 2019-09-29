@@ -8,12 +8,27 @@ $(document).ready(function () {
 
 function initMode() {
     let bottleButton = $("#bottle-button");
-    
+    let butteryButton = $("#buttery-button");
+    let tetrapackButton = $("#tetrapack-button");
+    let binButton = $("#bin-button");
+    let lampButton = $("#lamp-button");
 
     let secondMode = -1;
 
     bottleButton.on("click", async function () {
         secondMode = await checkFilter("Пластик", secondMode, 0);
+    })
+    butteryButton.on("click", async function () {
+        secondMode = await checkFilter("Батарейки", secondMode, 1);
+    })
+    tetrapackButton.on("click", async function () {
+        secondMode = await checkFilter("Тетрапак", secondMode, 2);
+    })
+    binButton.on("click", async function () {
+        secondMode = await checkFilter("Железо", secondMode, 3);
+    })
+    lampButton.on("click", async function () {
+        secondMode = await checkFilter("Лампочки", secondMode, 4);
     })
 
 }

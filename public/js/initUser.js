@@ -2,7 +2,7 @@ async function initUser(){
 
     let data = await requests.post("/users/getUserInfo");
 
-    let bonusBlock = $(".user-bunus");
+    let bonusBlock = $(".user-bonus");
     let interButton = $(".login");
     let userButton = $(".user-logo-block");
 
